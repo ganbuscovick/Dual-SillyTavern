@@ -139,7 +139,7 @@ Go to:
 Paste the URL of this GitHub repository.
 
 ```text
-https://github.com/USERNAME/REPOSITORY
+https://github.com/ganbuscovick/Dual-SillyTavern
 ```
 
 ### 3. Install
