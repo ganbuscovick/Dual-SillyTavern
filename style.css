@@ -1,0 +1,224 @@
+/* Settings-panel styling */
+#dual-sillytavern-settings .std-panel-badge {
+    margin-left: auto;
+    opacity: 0.7;
+    font-size: 0.85em;
+}
+
+#dual-sillytavern-settings .std-settings-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#dual-sillytavern-settings .std-settings-note,
+#dual-sillytavern-settings .std-settings-footnote {
+    opacity: 0.82;
+    line-height: 1.35;
+}
+
+#dual-sillytavern-settings .std-settings-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+/* Full-screen dual host */
+#st-dual-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483000;
+    display: flex;
+    flex-direction: column;
+    background: #111;
+    color: #eee;
+}
+
+.std-host-open {
+    overflow: hidden !important;
+}
+
+.std-toolbar {
+    flex: 0 0 auto;
+    min-height: 42px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 8px;
+    background: #171717;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    user-select: none;
+}
+
+.std-side-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    width: fit-content;
+    padding: 4px 8px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.std-side-title[data-side="right"] {
+    justify-self: end;
+}
+
+.std-side-title:hover {
+    background: rgba(255,255,255,0.07);
+}
+
+.std-mini-reload {
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 0;
+    border-radius: 5px;
+    background: transparent;
+    color: inherit;
+    opacity: 0.65;
+    cursor: pointer;
+}
+
+.std-mini-reload:hover {
+    opacity: 1;
+    background: rgba(255,255,255,0.08);
+}
+
+.std-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: currentColor;
+    opacity: 0.85;
+}
+
+.std-center-controls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.std-btn {
+    min-width: 34px;
+    height: 32px;
+    padding: 0 8px;
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 7px;
+    background: rgba(255,255,255,0.06);
+    color: inherit;
+    cursor: pointer;
+}
+
+.std-btn:hover {
+    background: rgba(255,255,255,0.11);
+}
+
+.std-status {
+    flex: 0 0 auto;
+    min-height: 0;
+    max-height: 58px;
+    padding: 0 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    line-height: 1.25;
+    background: #1c1c1c;
+}
+
+.std-status:empty {
+    display: none;
+}
+
+.std-status.warn,
+.std-status.error {
+    min-height: 26px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.std-panes {
+    --std-split: 50%;
+    min-height: 0;
+    flex: 1 1 auto;
+    display: grid;
+}
+
+.std-panes[data-layout="horizontal"] {
+    grid-template-columns: minmax(0, var(--std-split)) 7px minmax(0, calc(100% - var(--std-split)));
+}
+
+.std-panes[data-layout="vertical"] {
+    grid-template-columns: 1fr;
+    grid-template-rows: minmax(0, var(--std-split)) 7px minmax(0, calc(100% - var(--std-split)));
+}
+
+.std-pane {
+    min-width: 0;
+    min-height: 0;
+    position: relative;
+    overflow: hidden;
+    background: #111;
+}
+
+.std-frame {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+    background: #111;
+}
+
+.std-divider {
+    background: rgba(255,255,255,0.14);
+    touch-action: none;
+    cursor: col-resize;
+}
+
+.std-panes[data-layout="vertical"] .std-divider {
+    cursor: row-resize;
+}
+
+.std-divider:hover,
+.std-divider:focus {
+    background: rgba(255,255,255,0.28);
+    outline: none;
+}
+
+.std-loading,
+.std-error {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    text-align: center;
+}
+
+.std-error {
+    color: #ff8a8a;
+}
+
+#dual-sillytavern-settings .std-open-dual.danger {
+    border-color: rgba(255,100,100,0.45);
+}
+
+@media (max-width: 760px) {
+    .std-toolbar {
+        min-height: 38px;
+        padding: 4px 6px;
+    }
+
+    .std-side-title {
+        padding: 3px 5px;
+        font-size: 12px;
+    }
+
+    .std-btn {
+        min-width: 31px;
+        height: 30px;
+        padding: 0 6px;
+    }
+}

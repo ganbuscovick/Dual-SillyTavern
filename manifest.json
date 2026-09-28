@@ -1,0 +1,10 @@
+{
+  "display_name": "Dual SillyTavern",
+  "loading_order": 1000,
+  "requires": [],
+  "optional": [],
+  "js": "index.js",
+  "css": "style.css",
+  "author": "Custom Extension",
+  "version": "0.1.0"
+}
