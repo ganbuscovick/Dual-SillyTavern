@@ -1,135 +1,155 @@
-# ✨ Dual SillyTavern
+✨ Dual SillyTavern
 
-> **Two SillyTavern interfaces. One browser tab.**
+«Two SillyTavern workspaces. One tab.»
 
-I made **Dual SillyTavern** for the times when I want to have two full SillyTavern workspaces open at the same time without keeping two normal browser tabs side-by-side.
+Dual SillyTavern lets you open two SillyTavern interfaces side by side inside a single browser tab.
 
-Dual puts **SillyTavern A** and **SillyTavern B** into the same page and gives each side its own client-side state. I can move between characters, chats, settings, and other UI state on each side without the two panes constantly following each other.
-
----
-
-## 🌟 What I get
-
-With Dual open, I get two complete SillyTavern interfaces:
-
-```text
-┌──────────────────────────────────────────────────────────────┐
-│                 ✨ Dual SillyTavern                         │
-├───────────────────────────┬──────────────────────────────────┤
-│        SillyTavern A      │          SillyTavern B            │
-│                           │                                  │
-│       My workspace        │       My second workspace        │
-│                           │                                  │
-└───────────────────────────┴──────────────────────────────────┘
-```
-
-I can then:
-
-- use different characters on A and B;
-- use different chats on A and B;
-- keep different SillyTavern settings on each side during the Dual session;
-- resize the two panes with the draggable divider;
-- switch between horizontal and vertical layouts;
-- reload A or B independently;
-- reset the saved Dual session state whenever I need a fresh start.
-
-The two sides are meant to behave like separate SillyTavern workspaces while sharing the same underlying SillyTavern server.
+It is designed for situations where two separate chats, characters, or workspace states need to stay visible at the same time — without constantly switching between browser tabs.
 
 ---
 
-## 🚀 How I use it
+🌟 What does it do?
 
-After installing Dual, I open the **Extensions** panel in SillyTavern and find **Dual SillyTavern**.
+When Dual SillyTavern is opened, it creates two panes:
 
-I press:
+┌─────────────────────────────────────────────────────────────┐
+│                    ✨ Dual SillyTavern                     │
+├───────────────────────────┬─────────────────────────────────┤
+│       SillyTavern A       │        SillyTavern B            │
+│                           │                                 │
+│       Workspace A         │        Workspace B              │
+│                           │                                 │
+└───────────────────────────┴─────────────────────────────────┘
 
-**Open Dual SillyTavern**
+Each pane keeps its own browser-side SillyTavern state, so A and B can be used independently during the same Dual session.
 
-That opens both panes in one overlay.
+You can use different
 
-### The controls
+A| B
+Character| Character
+Chat| Chat
+Client-side settings| Client-side settings
+Active UI state| Active UI state
 
-| Control | What I use it for |
-|---|---|
-| **↔ / ↕** | Switch between horizontal and vertical layouts |
-| **⟳** | Clear the saved A/B state for the next launch |
-| **↻** next to A or B | Reload only that pane |
-| **×** | Close Dual mode |
-| **Esc** | Close Dual mode from the keyboard |
-| **Divider** | Drag to change the size of A and B |
-
-The split starts at **50/50**, and I can drag it anywhere between roughly **20/80 and 80/20**.
+The two panes still use the same SillyTavern installation and server underneath.
 
 ---
 
-## 🧠 How it works
+🚀 Getting started
 
-I built Dual as a **client-side extension** rather than starting another SillyTavern server.
+After installation:
 
-When I open Dual, it loads the current SillyTavern interface twice inside the same page. Each pane gets its own client-side namespace for the state that SillyTavern normally keeps in the browser.
+1. Open SillyTavern.
+2. Open the Extensions panel.
+3. Find Dual SillyTavern.
+4. Press Open Dual SillyTavern.
+5. Use both panes normally.
 
-That includes things such as:
+That's it.
 
-- `localStorage`
-- `sessionStorage`
+---
+
+🎛️ Controls
+
+Dual keeps the interface simple and puts the useful controls in the top bar.
+
+Control| Action
+↔ / ↕| Switch between horizontal and vertical layouts
+⟳| Reset the saved Dual session state
+↻ on A or B| Reload that pane only
+×| Close Dual
+Esc| Close Dual from the keyboard
+Divider| Drag to resize A and B
+
+The initial split is 50 / 50.
+
+The divider can be moved between approximately 20 / 80 and 80 / 20.
+
+---
+
+🧠 How it works
+
+Dual SillyTavern runs as a client-side SillyTavern extension.
+
+Instead of starting another SillyTavern server, it opens two copies of the current SillyTavern interface and gives each pane its own isolated browser-side namespace for the state that would normally be shared by the page.
+
+This covers the main client-side storage and communication mechanisms used by SillyTavern, including:
+
+- "localStorage"
+- "sessionStorage"
 - IndexedDB
 - Cache Storage
-- BroadcastChannel names
-- SillyTavern settings used by the client
-- the active chat pointer for characters
+- "BroadcastChannel"
+- client-side SillyTavern settings
+- active character/chat pointers
 
-This is what allows A and B to behave independently even though both panes are connected to the same SillyTavern server.
-
-### Chats
-
-I can normally use different chats on A and B at the same time.
-
-There is one important protection: if both panes are pointing at the **same physical chat file**, Dual blocks conflicting save, delete, or rename operations instead of allowing the two panes to silently overwrite each other.
-
-So my normal workflow is simple:
-
-> **A → one chat**  
-> **B → another chat**
+This is what allows the two panes to keep different client-side states while remaining inside the same browser tab.
 
 ---
 
-## 📦 Installation from GitHub
+💬 Chats
 
-I can install Dual directly from its GitHub repository using SillyTavern's built-in third-party extension installer.
+A and B can normally work with different chats at the same time.
 
-SillyTavern's current documentation supports installing third-party extensions from **Extensions → Install Extension** by pasting the Git repository URL. Git must be available to the SillyTavern installation. citeturn677093search0turn677093search1
+There is one important rule:
 
-### Step 1 — Open SillyTavern
+«Do not actively edit the exact same physical chat from both panes at once.»
 
-I open SillyTavern and go to:
+Dual detects conflicting operations on the same chat and blocks the write instead of allowing both panes to silently overwrite each other.
 
-**Extensions → Install Extension**
+For normal use, simply keep a different chat open in each pane.
 
-### Step 2 — Paste my GitHub repository URL
+A → Character 1 → Chat A
+B → Character 2 → Chat B
 
-I paste the URL of this repository.
+---
 
-Example:
+🔄 Resetting the session
 
-```text
+Dual stores its temporary A/B state for the current browser session.
+
+To clear that state:
+
+Extensions → Dual SillyTavern → Reset isolated session state
+
+Then close and reopen Dual.
+
+This is useful when starting over with fresh A/B client state.
+
+---
+
+📦 Installation from GitHub
+
+Dual can be installed directly through SillyTavern's third-party extension installer.
+
+1. Open the extension installer
+
+Go to:
+
+Extensions → Install Extension
+
+2. Enter the Git repository URL
+
+Paste the URL of this GitHub repository.
+
 https://github.com/USERNAME/REPOSITORY
-```
 
-### Step 3 — Install
+3. Install
 
-I press **Install** and let SillyTavern download the extension.
+Press Install and wait for SillyTavern to load the extension.
 
-### Step 4 — Open Dual
+4. Open Dual
 
-After the extension loads, I open the **Extensions** panel, expand **Dual SillyTavern**, and press **Open Dual SillyTavern**.
+Return to the Extensions panel and press:
+
+Open Dual SillyTavern
 
 ---
 
-## 🛠️ Manual installation
+🛠️ Manual installation
 
-I can also install it manually by placing these files in SillyTavern's third-party extension directory:
+The extension files can also be copied manually into SillyTavern's third-party extensions directory:
 
-```text
 public/
 └── scripts/
     └── extensions/
@@ -142,98 +162,56 @@ public/
                 ├── README.md
                 ├── CHANGELOG.md
                 └── LICENSE.txt
-```
 
-After copying the files, I reload SillyTavern and enable the extension from the Extensions panel.
-
----
-
-## 🔄 Resetting Dual
-
-If I want to start the two panes from a clean Dual state, I use:
-
-**Reset isolated session state**
-
-Then I close and reopen Dual.
-
-This rebuilds the A/B client state from the current normal SillyTavern page state.
+After copying the files, reload SillyTavern.
 
 ---
 
-## 💡 A simple workflow
+📱 Desktop & Mobile
 
-My usual setup looks like this:
+Dual SillyTavern is intended for both desktop and mobile browsers.
 
-```text
-SillyTavern
-      │
-      ▼
- Dual SillyTavern
-    ┌───────┴───────┐
-    ▼               ▼
-    A               B
- Character 1      Character 2
- Chat A           Chat B
- Settings A       Settings B
-```
+The interface can be switched between horizontal and vertical layouts to make better use of different screen sizes.
 
-This is useful when I want to keep two RP/workspaces visible at once, compare two setups, work on two different chats, or simply avoid switching between separate browser tabs.
+For narrow mobile screens, the vertical layout is often more comfortable.
 
 ---
 
-## ⚠️ A few things I keep in mind
+📁 Project structure
 
-Dual separates the **client-side state** used by the two panes, but both sides still use the same SillyTavern server.
-
-That means server-side resources that SillyTavern normally treats as global are still shared.
-
-The main thing I avoid is editing the exact same physical chat from both panes at the same time. Dual already blocks the conflicting chat write operations when it detects that situation.
-
----
-
-## 📱 Compatibility
-
-I built Dual around the SillyTavern **1.18.x** client architecture.
-
-It is intended for both **desktop and mobile browsers**, including Android setups where I run SillyTavern locally.
-
-Because Dual works on top of SillyTavern's existing client, future major changes inside SillyTavern can affect compatibility.
-
----
-
-## 📁 Project files
-
-```text
-manifest.json   → SillyTavern extension metadata
+manifest.json   → Extension metadata
 index.js        → Main Dual interface and controls
-bootstrap.js    → Client-state virtualization for A/B
-style.css       → Dual interface styling
-CHANGELOG.md    → Release history
+bootstrap.js    → A/B client-state isolation
+style.css       → Interface styling
+CHANGELOG.md    → Version history
 LICENSE.txt     → MIT License
-README.md       → This guide
-```
+README.md       → Documentation
 
 ---
 
-## 📌 Current version
+📌 Version
 
-**v0.1.0**
+v0.1.0
 
-This is my initial Dual SillyTavern release.
-
-I created this project through **vibecoding**, and I am not planning further updates at this time.
+Initial public release.
 
 ---
 
-## 📄 License
+📝 About this project
 
-I released this project under the **MIT License**.
+I made this project through vibecoding, and I do not plan to release further updates.
 
-See [`LICENSE.txt`](./LICENSE.txt) for the full license text.
+---
+
+📄 License
+
+Released under the MIT License.
+
+See ""LICENSE.txt"" (./LICENSE.txt) for the full license text.
 
 ---
 
 <p align="center">
   <b>✨ Dual SillyTavern</b><br>
-  Two workspaces. One tab. Simple.
+  Two workspaces. One tab.
 </p>
